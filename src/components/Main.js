@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import PowerButton from "../subComponents/PowerButton";
 
 const MainContainer = styled.div`
   width: 100vw;
@@ -16,8 +17,18 @@ const MainContainer = styled.div`
   }
 `;
 
+const Container = styled.div`
+  padding: 2rem;
+`;
+
 const Main = () => {
-  return <MainContainer>Main Component</MainContainer>;
+  return (
+    <MainContainer>
+      <Container>
+        <PowerButton />
+      </Container>
+    </MainContainer>
+  );
 };
 
 export default Main;
