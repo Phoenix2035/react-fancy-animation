@@ -1,5 +1,7 @@
 import styled from "styled-components";
+import LogoComponent from "../subComponents/Logo";
 import PowerButton from "../subComponents/PowerButton";
+import SocialMediaIcons from "../subComponents/SocialMediaIcons";
 
 const MainContainer = styled.div`
   width: 100vw;
@@ -26,6 +28,8 @@ const Main = () => {
     <MainContainer>
       <Container>
         <PowerButton />
+        <LogoComponent />
+        <SocialMediaIcons />
       </Container>
     </MainContainer>
   );
