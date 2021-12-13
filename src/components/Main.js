@@ -1,10 +1,12 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import ReactTooltip from "react-tooltip";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import LogoComponent from "../subComponents/Logo";
 import PowerButton from "../subComponents/PowerButton";
 import SocialMediaIcons from "../subComponents/SocialMediaIcons";
-import { Gmail } from "./AllSvgs";
+import { Gmail, YinYang } from "./AllSvgs";
 import { NavLink } from "react-router-dom";
 
 const MainContainer = styled.div`
@@ -80,7 +82,49 @@ const BottomBar = styled.div`
   justify-content: space-evenly;
 `;
 
+const rotate = keyframes`
+
+from {
+    transform:rotate(0);
+}
+
+to{
+     transform:rotate(360deg);
+}
+`;
+
+const Center = styled.button`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: none;
+  outline: none;
+  background-color: transparent;
+  cursor: pointer;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  & > :first-child {
+    animation: ${rotate} infinite 1.5s linear;
+  }
+
+  & span {
+    padding-top: 1rem;
+  }
+`;
+
 const Main = () => {
+  const notify = () => toast.success("Copy Successful");
+
+  const copyToClipboard = () => {
+    navigator.clipboard.writeText("aligodosi@gmail.com");
+    notify();
+  };
+
   return (
     <MainContainer>
       <Container>
@@ -88,8 +132,23 @@ const Main = () => {
         <LogoComponent />
         <SocialMediaIcons />
 
-        <Email data-tip="aligodosi@gmail.com">
-          <ReactTooltip effect="solid" />
+        <Center>
+          <YinYang width={200} height={200} fil="currentColor" />
+          <span>Click Here</span>
+        </Center>
+
+        <Email data-tip="aligodosi@gmail.com" onClick={copyToClipboard}>
+          <ToastContainer
+            position="top-center"
+            autoClose={2000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            draggable
+            pauseOnHover={false}
+          />
+          <ReactTooltip effect="solid" delayHide={2000} />
           <Gmail width={40} height={40} />
         </Email>
 
