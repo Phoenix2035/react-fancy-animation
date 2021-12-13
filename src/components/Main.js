@@ -10,6 +10,7 @@ import PowerButton from "../subComponents/PowerButton";
 import SocialMediaIcons from "../subComponents/SocialMediaIcons";
 import { Gmail, YinYang } from "./AllSvgs";
 import { NavLink } from "react-router-dom";
+import Intro from "./Intro";
 
 const MainContainer = styled.div`
   width: 100vw;
@@ -51,7 +52,7 @@ const Projects = styled(NavLink)`
 `;
 
 const Work = styled(NavLink)`
-  color: ${(props) => props.theme.text};
+  color: ${(props) => (props.click ? props.theme.body : props.theme.text)};
   position: absolute;
   top: 50%;
   left: calc(1rem + 2vw);
@@ -62,9 +63,10 @@ const Work = styled(NavLink)`
 `;
 
 const About = styled(NavLink)`
-  color: ${(props) => props.theme.text};
+  color: ${(props) => (props.click ? props.theme.body : props.theme.text)};
   text-decoration: none;
   cursor: pointer;
+  z-index: 1;
 `;
 
 const Skills = styled(NavLink)`
@@ -117,72 +119,87 @@ const Center = styled.button`
 
   & span {
     display: ${(props) => (props.click ? "none" : "inline-block")};
-    padding-top: 1rem;
+    padding-top: 0.5rem;
   }
 `;
 
+const DarkDiv = styled.div`
+  width: ${(props) => (props.click ? "50%" : "0")};
+  height: ${(props) => (props.click ? "100%" : "0")};
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 50%;
+  background-color: #000;
+  z-index: 1;
+  transition: height 0.5s ease, width 1s ease 0.5s;
+`;
+
 const Main = () => {
-  const [click, setClick] = useState(false);
+    const [click, setClick] = useState(false);
 
-  const notify = () => toast.success("Gmail Copied Successfully");
+    const notify = () => toast.success("Gmail Copied Successfully");
 
-  const copyToClipboard = () => {
-    navigator.clipboard.writeText("aligodosi@gmail.com");
-    notify();
-  };
+    const copyToClipboard = () => {
+        navigator.clipboard.writeText("aligodosi@gmail.com");
+        notify();
+    };
 
-  return (
-    <MainContainer>
-      <Container>
-        <PowerButton />
-        <LogoComponent />
-        <SocialMediaIcons />
+    return (
+        <MainContainer>
+            <DarkDiv click={click} />
+            <Container>
+                <PowerButton />
+                <LogoComponent theme={click ? "dark" : "light"} />
+                <SocialMediaIcons theme={click ? "dark" : "light"} />
 
-        <Center click={click}>
-          <YinYang
-            onClick={() => setClick(!click)}
-            width={click ? 120 : 200}
-            height={click ? 120 : 200}
-            fil="currentColor"
-          />
-          <span>Click Here</span>
-        </Center>
+                <Center click={click}>
+                    <YinYang
+                        onClick={() => setClick(!click)}
+                        width={click ? 120 : 200}
+                        height={click ? 120 : 200}
+                        fil="currentColor"
+                    />
+                    <span>Click Here</span>
+                </Center>
 
-        <Email data-tip="Click Me" onClick={copyToClipboard}>
-          <ToastContainer
-            position="top-center"
-            autoClose={2000}
-            hideProgressBar={false}
-            newestOnTop={false}
-            closeOnClick
-            rtl={false}
-            draggable
-            pauseOnHover={false}
-          />
-          <ReactTooltip effect="solid" delayHide={2000} place="left" />
-          <Gmail width={40} height={40} />
-        </Email>
+                <Email data-tip="Click Me" onClick={copyToClipboard}>
+                    <ToastContainer
+                        position="bottom-center"
+                        autoClose={2000}
+                        hideProgressBar={false}
+                        newestOnTop={false}
+                        closeOnClick
+                        rtl={false}
+                        draggable
+                        pauseOnHover={false}
+                    />
+                    <ReactTooltip effect="solid" delayHide={2000} place="left" />
+                    <Gmail width={40} height={40} />
+                </Email>
 
-        <Projects to="/projects">
-          <h2>Projects</h2>
-        </Projects>
+                <Projects to="/projects">
+                    <h2>Projects</h2>
+                </Projects>
 
-        <Work to="/work">
-          <h2>Work</h2>
-        </Work>
+                <Work to="/work" click={click}>
+                    <h2>Work</h2>
+                </Work>
 
-        <BottomBar>
-          <About to="/about">
-            <h2>About Me</h2>
-          </About>
+                <BottomBar>
+                    <About to="/about" click={click}>
+                        <h2>About Me</h2>
+                    </About>
 
-          <Skills to="/skills">
-            <h2>My Skills</h2>
-          </Skills>
-        </BottomBar>
-      </Container>
-    </MainContainer>
-  );
+                    <Skills to="/skills">
+                        <h2>My Skills</h2>
+                    </Skills>
+                </BottomBar>
+            </Container>
+
+            {click ? <Intro click={click} /> : null}
+        </MainContainer>
+    );
 };
 
 export default Main;
