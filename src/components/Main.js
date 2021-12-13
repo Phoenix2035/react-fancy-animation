@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 import styled, { keyframes } from "styled-components";
 import ReactTooltip from "react-tooltip";
 import { ToastContainer, toast } from "react-toastify";
@@ -95,8 +97,8 @@ to{
 
 const Center = styled.button`
   position: absolute;
-  top: 50%;
-  left: 50%;
+  top: ${(props) => (props.click ? "85%" : "50%")};
+  left: ${(props) => (props.click ? "92%" : "50%")};
   transform: translate(-50%, -50%);
   border: none;
   outline: none;
@@ -107,18 +109,22 @@ const Center = styled.button`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  transition: all 1s ease;
 
   & > :first-child {
     animation: ${rotate} infinite 1.5s linear;
   }
 
   & span {
+    display: ${(props) => (props.click ? "none" : "inline-block")};
     padding-top: 1rem;
   }
 `;
 
 const Main = () => {
-  const notify = () => toast.success("Copy Successful");
+  const [click, setClick] = useState(false);
+
+  const notify = () => toast.success("Gmail Copied Successfully");
 
   const copyToClipboard = () => {
     navigator.clipboard.writeText("aligodosi@gmail.com");
@@ -132,12 +138,17 @@ const Main = () => {
         <LogoComponent />
         <SocialMediaIcons />
 
-        <Center>
-          <YinYang width={200} height={200} fil="currentColor" />
+        <Center click={click}>
+          <YinYang
+            onClick={() => setClick(!click)}
+            width={click ? 120 : 200}
+            height={click ? 120 : 200}
+            fil="currentColor"
+          />
           <span>Click Here</span>
         </Center>
 
-        <Email data-tip="aligodosi@gmail.com" onClick={copyToClipboard}>
+        <Email data-tip="Click Me" onClick={copyToClipboard}>
           <ToastContainer
             position="top-center"
             autoClose={2000}
@@ -148,7 +159,7 @@ const Main = () => {
             draggable
             pauseOnHover={false}
           />
-          <ReactTooltip effect="solid" delayHide={2000} />
+          <ReactTooltip effect="solid" delayHide={2000} place="left" />
           <Gmail width={40} height={40} />
         </Email>
 
