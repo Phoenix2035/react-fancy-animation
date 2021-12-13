@@ -24,41 +24,41 @@ const Line = styled.span`
 `;
 
 const SocialMediaIcons = () => {
-  return (
-    <Icons>
-      <div>
-        <NavLink
-          style={{ color: "inherit" }}
-          target="_blank"
-          to={{ pathname: "https://github.com/masturdating1991" }}
-        >
-          <Github width={25} height={25} fill="currentColor" />
-        </NavLink>
-      </div>
+    return (
+        <Icons>
+            <div>
+                <NavLink
+                    style={{ color: "inherit" }}
+                    target="_blank"
+                    to={{ pathname: "https://github.com/masturdating1991" }}
+                >
+                    <Github width={25} height={25} fill="currentColor" />
+                </NavLink>
+            </div>
 
-      <div>
-        <NavLink
-          style={{ color: "inherit" }}
-          target="_blank"
-          to={{ pathname: "https://www.linkedin.com/in/ali-ghodousi" }}
-        >
-          <Linkedin width={25} height={25} fill="currentColor" />
-        </NavLink>
-      </div>
+            <div>
+                <NavLink
+                    style={{ color: "inherit" }}
+                    target="_blank"
+                    to={{ pathname: "https://www.linkedin.com/in/ali-ghodousi" }}
+                >
+                    <Linkedin width={25} height={25} fill="currentColor" />
+                </NavLink>
+            </div>
 
-      <div>
-        <NavLink
-          style={{ color: "inherit" }}
-          target="_blank"
-          to={{ pathname: "https://www.instagram.com/aligh_2035" }}
-        >
-          <Instagram width={25} height={25} fill="currentColor" />
-        </NavLink>
-      </div>
+            <div>
+                <NavLink
+                    style={{ color: "inherit" }}
+                    target="_blank"
+                    to={{ pathname: "https://www.instagram.com/aligh_2035" }}
+                >
+                    <Instagram width={25} height={25} fill="currentColor" />
+                </NavLink>
+            </div>
 
-      <Line />
-    </Icons>
-  );
+            <Line />
+        </Icons>
+    );
 };
 
 export default SocialMediaIcons;
