@@ -4,7 +4,12 @@ import { Switch, Route } from "react-router-dom";
 import { lightTheme } from "./components/Themes"
 import GlobalStyle from "./globalStyles";
 
-import { Main, AboutPage, WorkPage, MySkillsPage, ProjectsPage } from "./components";
+
+import Main from "./components/Main"
+import AboutPage from "./pages/AboutPage"
+import ProjectsPage from "./pages/ProjectsPage"
+import WorkPage from "./pages/WorkPage"
+import MySkillsPage from "./pages/MySkillsPage"
 
 function App() {
     return (

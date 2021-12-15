@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { motion } from "framer-motion"
 
 import styled, { keyframes } from "styled-components";
 import ReactTooltip from "react-tooltip";
@@ -163,7 +164,7 @@ const Main = () => {
                     <span>Click Here</span>
                 </Center>
 
-                <Email data-tip="Click Me" onClick={copyToClipboard}>
+                <Email data-tip="Click Me" onClick={copyToClipboard} >
                     <ToastContainer
                         position="bottom-center"
                         autoClose={2000}
@@ -175,24 +176,26 @@ const Main = () => {
                         pauseOnHover={false}
                     />
                     <ReactTooltip effect="solid" delayHide={2000} place="left" />
-                    <Gmail width={40} height={40} />
+                    <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
+                        <Gmail width={40} height={40} />
+                    </motion.div>
                 </Email>
 
                 <Projects to="/projects">
-                    <h2>Projects</h2>
+                    <motion.h2 whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>Projects</motion.h2>
                 </Projects>
 
-                <Work to="/work" click={click}>
-                    <h2>Work</h2>
+                <Work to="/work" click={click} >
+                    <motion.h2 whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>Work</motion.h2>
                 </Work>
 
                 <BottomBar>
                     <About to="/about" click={click}>
-                        <h2>About Me</h2>
+                        <motion.h2 whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>About Me</motion.h2>
                     </About>
 
                     <Skills to="/skills">
-                        <h2>My Skills</h2>
+                        <motion.h2 whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>My Skills</motion.h2>
                     </Skills>
                 </BottomBar>
             </Container>
