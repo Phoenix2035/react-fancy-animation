@@ -74,7 +74,7 @@ const AboutPage = () => {
     return (
         <ThemeProvider theme={darkTheme}>
             <Box>
-                <Logo/>
+                <Logo theme={"dark"}/>
                 <PowerButton theme={"dark"}/>
                 <SocialMediaIcons theme={"dark"}/>
                 <ParticleComponent theme={"dark"}/>
