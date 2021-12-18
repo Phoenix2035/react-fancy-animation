@@ -1,4 +1,5 @@
 import styled, {ThemeProvider} from "styled-components";
+import {motion} from "framer-motion";
 
 
 import {darkTheme} from "../components/Themes";
@@ -21,7 +22,7 @@ const Box = styled.div`
   align-items: center;
 `
 
-const Main = styled.ul`
+const Main = styled(motion.ul)`
   height: 40vh;
   position: fixed;
   top: 12rem;
@@ -39,6 +40,20 @@ const Rotate = styled.span`
   bottom: 1rem;
   z-index: 1;
 `
+
+
+const containerAnimation = {
+    hidden: {
+        opacity: 0
+    },
+    show: {
+        opacity: 1,
+        transition: {
+            staggerChildren: 0.5,
+            duration: 0.5
+        }
+    }
+}
 
 const WorkPage = () => {
     const ref = useRef(null)
@@ -65,7 +80,7 @@ const WorkPage = () => {
                 <Logo theme={"dark"}/>
                 <PowerButton theme={"dark"}/>
                 <SocialMediaIcons theme={"dark"}/>
-                <Main ref={ref}>
+                <Main ref={ref} variants={containerAnimation} initial="hidden" animate="show">
                     {
                         Work.map(item =>
                             <Card key={item.id} data={item}/>

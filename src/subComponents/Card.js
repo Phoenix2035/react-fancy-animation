@@ -1,9 +1,12 @@
 import styled from "styled-components";
 import {NavLink} from "react-router-dom";
+import {motion} from "framer-motion";
+
+
 import {Github} from "../components/AllSvgs";
 
 
-const Box = styled.li`
+const Box = styled(motion.li)`
   width: 16rem;
   height: 40vh;
   background-color: ${props => props.theme.text};
@@ -83,13 +86,24 @@ const Git = styled(NavLink)`
   }
 `
 
+const cardAnimation = {
+    hidden: {
+        scale: 0
+    },
+    show: {
+        scale: 1,
+        transition: {
+            type: "spring",
+            duration: 0.5
+        }
+    }
+}
+
 const Card = (props) => {
 
     const {name, description, tags, demo, github} = props.data
-
-
     return (
-        <Box>
+        <Box variants={cardAnimation} initial="hidden" animate="show">
             <Title>
                 {name}
             </Title>

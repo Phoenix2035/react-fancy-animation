@@ -1,17 +1,17 @@
-import { useState } from "react";
-import { motion } from "framer-motion"
+import {useState} from "react";
+import {motion} from "framer-motion"
 
-import styled, { keyframes } from "styled-components";
+import styled, {keyframes} from "styled-components";
 import ReactTooltip from "react-tooltip";
-import { ToastContainer, toast } from "react-toastify";
+import {ToastContainer, toast} from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 import LogoComponent from "../subComponents/Logo";
 import PowerButton from "../subComponents/PowerButton";
 import SocialMediaIcons from "../subComponents/SocialMediaIcons";
-import { Gmail, YinYang } from "./AllSvgs";
-import { NavLink } from "react-router-dom";
-import Intro from "./Intro";
+import {Gmail, YinYang} from "../components/AllSvgs";
+import {NavLink} from "react-router-dom";
+import Intro from "../components/Intro";
 
 const MainContainer = styled.div`
   width: 100vw;
@@ -19,6 +19,7 @@ const MainContainer = styled.div`
   background: ${(props) => props.theme.body};
   overflow: hidden;
   position: relative;
+
   h2,
   h3,
   h4,
@@ -89,13 +90,13 @@ const BottomBar = styled.div`
 
 const rotate = keyframes`
 
-from {
-    transform:rotate(0);
-}
+  from {
+    transform: rotate(0);
+  }
 
-to{
-     transform:rotate(360deg);
-}
+  to {
+    transform: rotate(360deg);
+  }
 `;
 
 const Center = styled.button`
@@ -148,11 +149,10 @@ const Main = () => {
 
     return (
         <MainContainer>
-            <DarkDiv click={click} />
+            <DarkDiv click={click}/>
             <Container>
-                <PowerButton />
-                <LogoComponent theme={click ? "dark" : "light"} />
-                <SocialMediaIcons theme={click ? "dark" : "light"} />
+                <LogoComponent theme={click ? "dark" : "light"}/>
+                <SocialMediaIcons theme={click ? "dark" : "light"}/>
 
                 <Center click={click}>
                     <YinYang
@@ -164,9 +164,9 @@ const Main = () => {
                     <span>Click Here</span>
                 </Center>
 
-                <Email data-tip="Click Me" onClick={copyToClipboard} >
+                <Email data-tip="Click Me" onClick={copyToClipboard}>
                     <ToastContainer
-                        position="bottom-center"
+                        position="top-center"
                         autoClose={2000}
                         hideProgressBar={false}
                         newestOnTop={false}
@@ -175,32 +175,46 @@ const Main = () => {
                         draggable
                         pauseOnHover={false}
                     />
-                    <ReactTooltip effect="solid" delayHide={2000} place="left" />
-                    <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
-                        <Gmail width={40} height={40} />
+                    <ReactTooltip effect="solid" delayHide={2000} place="left"/>
+                    <motion.div initial={{y: -200, transition: {type: "spring", duration: 1.5, delay: 1}}}
+                                animate={{y: 0, transition: {type: "spring", duration: 1.5, delay: 1}}}
+                                whileHover={{scale: 1.1}} whileTap={{scale: 0.9}}>
+                        <Gmail width={40} height={40}/>
                     </motion.div>
                 </Email>
 
                 <Projects to="/projects">
-                    <motion.h2 whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>Projects</motion.h2>
+                    <motion.h2 initial={{y: -200, transition: {type: "spring", duration: 1.5, delay: 1}}}
+                               animate={{y: 0, transition: {type: "spring", duration: 1.5, delay: 1}}}
+                               whileHover={{scale: 1.1}} whileTap={{scale: 0.9}}>Projects
+                    </motion.h2>
                 </Projects>
 
-                <Work to="/work" click={click} >
-                    <motion.h2 whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>Work</motion.h2>
+                <Work to="/work" click={click}>
+                    <motion.h2 initial={{y: -200, transition: {type: "spring", duration: 1.5, delay: 1}}}
+                               animate={{y: 0, transition: {type: "spring", duration: 1.5, delay: 1}}}
+                               whileHover={{scale: 1.1}} whileTap={{scale: 0.9}}>Work
+                    </motion.h2>
                 </Work>
 
                 <BottomBar>
                     <About to="/about" click={click}>
-                        <motion.h2 whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>About Me</motion.h2>
+                        <motion.h2 initial={{y: 200, transition: {type: "spring", duration: 1.5, delay: 1}}}
+                                   animate={{y: 0, transition: {type: "spring", duration: 1.5, delay: 1}}}
+                                   whileHover={{scale: 1.1}} whileTap={{scale: 0.9}}>About Me
+                        </motion.h2>
                     </About>
 
                     <Skills to="/skills">
-                        <motion.h2 whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>My Skills</motion.h2>
+                        <motion.h2 initial={{y: 200, transition: {type: "spring", duration: 1.5, delay: 1}}}
+                                   animate={{y: 0, transition: {type: "spring", duration: 1.5, delay: 1}}}
+                                   whileHover={{scale: 1.1}} whileTap={{scale: 0.9}}>My Skills
+                        </motion.h2>
                     </Skills>
                 </BottomBar>
             </Container>
 
-            {click ? <Intro click={click} /> : null}
+            {click ? <Intro click={click}/> : null}
         </MainContainer>
     );
 };

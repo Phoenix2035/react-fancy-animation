@@ -2,11 +2,12 @@ import styled, {ThemeProvider} from "styled-components";
 
 
 import {lightTheme} from "../components/Themes";
-import {Develope} from "../components/AllSvgs";
+import {Develop} from "../components/AllSvgs";
 import Logo from "../subComponents/Logo";
 import SocialMediaIcons from "../subComponents/SocialMediaIcons";
 import PowerButton from "../subComponents/PowerButton";
 import ParticleComponent from "../subComponents/ParticleComponent";
+import BigTitle from "../subComponents/BigTitle";
 
 
 const Box = styled.div`
@@ -89,7 +90,7 @@ const MySkillsPage = () => {
                 <ParticleComponent theme={"light"}/>
                 <Main>
                     <Title>
-                        <Develope width={40} height={40}/> Frontend Developer
+                        <Develop width={40} height={40}/> Frontend Developer
                     </Title>
                     <Description>
                         I value business or brand for which i'm creating, thus i enjoy bringing new ideas to life.
@@ -106,6 +107,8 @@ const MySkillsPage = () => {
                 <Main>
 
                 </Main>
+
+                <BigTitle text="SKILLS" top="80%" right="30%"/>
             </Box>
         </ThemeProvider>
     )

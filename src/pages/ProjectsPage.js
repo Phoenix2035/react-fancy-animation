@@ -10,8 +10,9 @@ import ProjectsComponent from "../components/Projects"
 import {Projects} from "../data/ProjectData"
 import AnchorComponent from "../subComponents/Anchor";
 import {useEffect, useState} from "react";
+import BigTitle from "../subComponents/BigTitle";
 
-const MainContainer = styled.div`
+const MainContainer = styled(motion.div)`
   background-image: url(${paperImg});
   background-size: cover;
   background-repeat: no-repeat;
@@ -41,6 +42,20 @@ const Grid = styled.div`
   grid-gap: calc(1rem + 2vw);
 `;
 
+
+const containerAnimation = {
+    hidden: {
+        opacity: 0
+    },
+    show: {
+        opacity: 1,
+        transition: {
+            staggerChildren: 0.5,
+            duration: 0.5
+        }
+    }
+}
+
 const ProjectsPage = () => {
     const [numbers, setNumbers] = useState(0)
 
@@ -50,7 +65,12 @@ const ProjectsPage = () => {
     }, [])
 
     return (
-        <MainContainer>
+        <MainContainer variants={containerAnimation} initial="hidden" animate="show" exit={{
+            opacity: 0,
+            transition: {
+                duration: 0.5
+            }
+        }}>
             <Container>
                 <Logo/>
                 <PowerButton/>
@@ -64,6 +84,7 @@ const ProjectsPage = () => {
                         )}
                     </Grid>
                 </Center>
+                <BigTitle text="PROJECTS" top="5rem" left="5rem"/>
             </Container>
         </MainContainer>
     );
