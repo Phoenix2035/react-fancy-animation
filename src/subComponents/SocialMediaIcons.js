@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import {NavLink} from "react-router-dom";
 
-import {Github, Linkedin, Instagram} from "../components/AllSvgs";
+import {Github, Linkedin} from "../components/AllSvgs";
 import {darkTheme} from "../components/Themes"
 import {motion} from "framer-motion";
 
