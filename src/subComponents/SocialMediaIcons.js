@@ -57,20 +57,6 @@ const SocialMediaIcons = (props) => {
                 </NavLink>
             </motion.div>
 
-            <motion.div
-                initial={{transform: "scale(0)"}}
-                animate={{scale: [0, 1, 1.5, 1]}}
-                transition={{type: "spring", duration: 1, delay: 1.6}}
-            >
-                <NavLink
-                    style={{color: "inherit"}}
-                    target="_blank"
-                    to={{pathname: "https://www.instagram.com/aligh_2035"}}
-                >
-                    <Instagram width={30} height={30} fill={props.theme === "dark" ? darkTheme.text : darkTheme.body}/>
-                </NavLink>
-            </motion.div>
-
             <Line color={props.theme}
                   initial={{height: 0}} animate={{height: "8rem"}}
                   transition={{type: "spring", duration: 1, delay: 0.8}}
